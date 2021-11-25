@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "marvel-api"
+    }
+  },
+  "defaultProject": "marvel-api",
+  "cli": {
+    "analytics": false
+  }
 }
