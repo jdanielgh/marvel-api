@@ -1,14 +1,14 @@
-export interface MarvelModel {
+export interface MarvelModel<T> {
   code: number;
-  data: Data;
+  data: Data<T>;
 }
 
-export interface Data {
+export interface Data<T> {
   count:    number;
   limit:    number;
   offset:   number;
   total:    number;
-  results:  CharacterModel[];
+  results:  T[];
 }
 
 export interface CharacterModel {
@@ -33,4 +33,10 @@ export interface Item {
 export interface Thumbnail {
   extension:  string;
   path:       string;
+}
+
+export interface ComicModel {
+  id:         number;
+  title:      string;
+  thumbnail: Thumbnail;
 }

@@ -1,1 +1,9 @@
-<p>favourites works!</p>
+<h3 class="m-2" ><img src="./../../../../assets/img/favourites.png" alt="favourites"><strong>  My favourites</strong></h3>
+<div class="row container mt-3" *ngFor="let comic of comics">
+  <div class="row parent">
+    <img class="image1" [src]="joinImgUrl(comic)" [alt]="comic.title">
+    <img class="image2" src="./../../../../assets/img/btn-delete.png" alt="close" (click)="onClickDelete(comic)">
+  </div>
+  <h5><strong>{{comic.title}}</strong></h5>
+</div>
+

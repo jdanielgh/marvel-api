@@ -11,7 +11,7 @@ import { CharacterService } from 'src/app/shared/services/character-service/char
 })
 export class CharacterListComponent implements OnInit, OnDestroy {
   characterList: CharacterModel[];
-  marvelData: MarvelModel;
+  marvelData: MarvelModel<CharacterModel>;
   offset = "0";
   orderBy = "name";
   readonly limit: "10";
@@ -27,11 +27,11 @@ export class CharacterListComponent implements OnInit, OnDestroy {
     this.getAllCharacters(this.offset, this.limit, this.orderBy).subscribe();
   }
 
-  getAllCharacters(offset: string, limit: string, orderBy: string, name?: string): Observable<MarvelModel> {
+  getAllCharacters(offset: string, limit: string, orderBy: string, name?: string): Observable<MarvelModel<CharacterModel>> {
     return this.characterService
       .getCharacters(offset, limit, orderBy, name)
       .pipe(
-        tap((marvel: MarvelModel) => {
+        tap((marvel: MarvelModel<CharacterModel>) => {
           this.marvelData = marvel;
           this.characterList = marvel.data.results;
           this.setFilterIndex();

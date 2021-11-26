@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { MarvelModel } from '../../models/marvel.model';
+import { CharacterModel, MarvelModel } from '../../models/marvel.model';
 import { urlMarvelApi } from '../constant-service';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class CharacterService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getCharacters(offset: string = '0', limit: string = '10', orderBy: string = 'name', name?: string): Observable<MarvelModel> {
+  getCharacters(offset: string = '0', limit: string = '10', orderBy: string = 'name', name?: string): Observable<MarvelModel<CharacterModel>> {
     let params = new HttpParams()
       .set('ts', '1000')
       .set('apikey', '215457b5c0188ca377d17a32e0b4ebfd')
@@ -21,11 +21,9 @@ export class CharacterService {
       .set('offset', offset)
       .set('orderBy', orderBy);
     if (!!name) {
-      console.log('', name);
-
       params = params.append('nameStartsWith', name);
     }
-    return this.http.get<MarvelModel>(this.characterPath, {params});
+    return this.http.get<MarvelModel<CharacterModel>>(this.characterPath, {params});
   }
 
   getCharacterSearch(): Observable<string> {
