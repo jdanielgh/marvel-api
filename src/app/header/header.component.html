@@ -7,8 +7,8 @@
     <div class="col-5 m-3">
       <div class="row justify-content-md-center">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search character..." aria-label="Input group example" aria-describedby="btnGroupAddon" >
-          <button  class="input-group-text p-0 button-search" id="btnGroupAddon"><img src="../../assets/img/search.png" alt="marvel-pic" width="20" height="20"></button>
+          <input [(ngModel)]="characterSearch" type="text" class="form-control" placeholder="Search character..." aria-label="Input group example" aria-describedby="btnGroupAddon" >
+          <button (click)="onClickSearch()" class="input-group-text p-0 button-search" id="btnGroupAddon"><img src="../../assets/img/search.png" alt="marvel-pic" width="20" height="20"></button>
         </div>
       </div>
     </div>

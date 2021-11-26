@@ -1,1 +1,39 @@
-<p>character-list works!</p>
+<div class="row m-4">
+  <div class="col-9">
+    <h2><img src="./../../../../assets/img/characters.png" alt="">Characters</h2>
+  </div>
+  <div class="col m-2">
+    <select class="form-select" aria-label="Default select example" [(ngModel)]="filter" (change)="onChangeFilter()">
+      <option value="name" selected>Name ascending</option>
+      <option value="modified">Modified ascending</option>
+      <option value="-name">Name descending </option>
+      <option value="-modified">Modified descending </option>
+    </select>
+  </div>
+</div>
+<div class="row container" *ngIf="!!characterList">
+  <div class="col-6 list-characters" *ngFor="let character of characterList">
+    <app-card
+      [character]="character">
+    </app-card>
+  </div>
+</div>
+<div class="row container">
+  <div class="col-4"></div>
+  <div class="col">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled': offset==='0'}">
+          <a class="page-link" (click)="clickPaginator('Previous')">Previous</a>
+        </li>
+
+        <li *ngFor="let value of filterIndex; let i = index" class="page-item" [ngClass]="{'active': i===0}">
+            <a class="page-link">{{value}}</a>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': filterIndex.length <= 1}">
+          <a class="page-link" (click)="clickPaginator('next')">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

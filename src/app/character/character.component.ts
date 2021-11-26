@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterModel } from '../shared/models/marvel.model';
 import { CharacterService } from '../shared/services/character-service/character.service';
 import { ComicService } from '../shared/services/comic-service/comic.service';
 
@@ -9,11 +10,12 @@ import { ComicService } from '../shared/services/comic-service/comic.service';
 })
 export class CharacterComponent implements OnInit {
 
+  characterList: CharacterModel[];
+
   constructor(private readonly characterService: CharacterService,
               private readonly comicService: ComicService) { }
 
   ngOnInit(): void {
-    this.characterService.getAllCharacters().subscribe( valor => console.log('characters', valor));
     this.comicService.getAllComics().subscribe( valor => console.log('comics', valor));
   }
 

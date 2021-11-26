@@ -1,0 +1,40 @@
+img {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+}
+
+.subtitle-card {
+  color: hsl(5deg 5% 46%);
+}
+
+.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comic-text {
+  color: hsl(9deg 4% 68%);
+}
+
+.link-text:hover {
+  text-decoration: underline;
+  color: red;
+}
+
+p.card-text {
+  min-height: 150px;
+}
+
+#link-arrow:hover {
+  width: 15px;
+  height: 15px;
+  visibility: visible;
+}
+
+#link-arrow {
+  width: 15px;
+  height: 15px;
+  visibility: hidden;
+}
