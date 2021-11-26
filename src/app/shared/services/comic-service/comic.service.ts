@@ -19,6 +19,11 @@ export class ComicService {
     return this.http.get<MarvelModel<ComicModel>>(this.comicPath, {params});
   }
 
+  getOneComic(resourceURI: string): Observable<MarvelModel<ComicModel>> {
+    const params = paramsApiMarvel
+    return this.http.get<MarvelModel<ComicModel>>(resourceURI, {params});
+  }
+
   getBehaviorSubjectComics(): Observable<ComicModel> {
     return this.comic.asObservable();
   }

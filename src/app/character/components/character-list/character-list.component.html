@@ -14,7 +14,8 @@
 <div class="row container" *ngIf="!!characterList">
   <div class="col-6 list-characters" *ngFor="let character of characterList">
     <app-card
-      [character]="character">
+      [character]="character"
+      (clickComic)="onClickComicEmit($event)">
     </app-card>
   </div>
 </div>

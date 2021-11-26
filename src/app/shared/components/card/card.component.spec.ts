@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { resultMock } from '../../mocks/data-mock/marvel.mock';
 
 import { CardComponent } from './card.component';
 
@@ -16,6 +17,7 @@ describe('CardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
+    component.character = {...resultMock[0]};
     fixture.detectChanges();
   });
 

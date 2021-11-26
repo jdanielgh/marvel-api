@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CharacterModel, Item } from '../../models/marvel.model';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { CharacterModel, Comic, Item } from '../../models/marvel.model';
 
 @Component({
   selector: 'app-card',
@@ -9,6 +9,7 @@ import { CharacterModel, Item } from '../../models/marvel.model';
 export class CardComponent implements OnInit {
 
   @Input() character: CharacterModel;
+  @Output() clickComic: EventEmitter<Item> = new EventEmitter()
 
   comics: Item[];
 
@@ -29,9 +30,10 @@ export class CardComponent implements OnInit {
   }
 
   get getComics(): Item[] {
-    const vect = this.character.comics.items.splice(0,4);
-    console.log(vect);
+    return this.character.comics.items.splice(0,4);
+  }
 
-    return vect;
+  onClickComic(item: Item): void {
+    this.clickComic.emit(item);
   }
 }

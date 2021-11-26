@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { mergeMap, skip, tap } from 'rxjs/operators';
-import { CharacterModel, MarvelModel } from 'src/app/shared/models/marvel.model';
+import { CharacterModel, ComicModel, Item, MarvelModel } from 'src/app/shared/models/marvel.model';
 import { CharacterService } from 'src/app/shared/services/character-service/character.service';
+import { ComicService } from 'src/app/shared/services/comic-service/comic.service';
 
 @Component({
   selector: "app-character-list",
@@ -20,7 +21,8 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   filterIndex = [1, 2, 3];
   suscriber$: Subscription;
 
-  constructor(private readonly characterService: CharacterService) {}
+  constructor(private readonly characterService: CharacterService,
+              private readonly comicService: ComicService) {}
 
   ngOnInit(): void {
     this.listenerCharacterSearch();
@@ -67,6 +69,15 @@ export class CharacterListComponent implements OnInit, OnDestroy {
     this.offset = newOffset.toString();
     this.getAllCharacters(this.offset, this.limit, this.filter, this.characterName).subscribe();
     scroll(0, 0);
+  }
+
+  onClickComicEmit(item: Item): void {
+    this.comicService.getOneComic(item.resourceURI).subscribe(
+      (comicMarvel: MarvelModel<ComicModel>) => {
+        const comicItem = comicMarvel.data.results;
+        this.comicService.setBehaviorSubjectComics(comicItem[0]);
+      }
+    );
   }
 
   ngOnDestroy(): void {
